@@ -1,3 +1,11 @@
+Number.prototype.clamp = function(min, max) {
+    return Math.min(Math.max(this, min), max);
+  };
+
+  Number.prototype.map = function (in_min, in_max, out_min, out_max) {
+    return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }
+
 document.querySelectorAll('a[href*="#"]').forEach(function (el) {
     var targetId = el.hash,
         targetAnchor = document.getElementById(targetId.slice(1));
@@ -14,6 +22,11 @@ document.querySelectorAll('a[href*="#"]').forEach(function (el) {
         });
     });
 })
+
+let debuga = 0;
+let debugc = 0;
+
+let mouseEvent = {clientX: -9999, clientY: -9999};
 
 {
     let canvas = document.getElementById("about-canvas");
@@ -49,24 +62,28 @@ document.querySelectorAll('a[href*="#"]').forEach(function (el) {
 
     img.addEventListener('load', function () {
 
+
         const centerx = canvas.width / 2 - img.width / 2;
         const centery = canvas.height / 2 - img.height / 2;
 
-        function drawSegment(image, p1, p2, p3, offsetx, offsety, angle) {
+        function drawSegment(image, p1, p2, p3, offsetx, offsety, angle, scale) {
             ctx.save();
             if (offsetx || offsety) {
                 ctx.translate(offsetx, offsety);
             }
 
-            if (angle) {
+            if (angle || scale) {
                 center = {
                     x: (p1.x + p2.x + p3.x) / 3,
                     y: (p1.y + p2.y + p3.y) / 3
                 };
                 ctx.translate(center.x, center.y)
                 ctx.rotate(angle);
+                ctx.scale(scale, scale);
                 ctx.translate(-center.x, -center.y)
             }
+            
+            
 
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -79,8 +96,9 @@ document.querySelectorAll('a[href*="#"]').forEach(function (el) {
         }
 
         function draw() {
+            let [mx, my] = getMousePos(canvas, mouseEvent);
             let done = true;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);     
             for (let i = 0; i < vCount - 1; i++) {
                 for (let j = 0; j < hCount - 1; j++) {
                     const p1 = points[i][j];
@@ -88,9 +106,11 @@ document.querySelectorAll('a[href*="#"]').forEach(function (el) {
                     const p3 = points[i][j + 1];
                     const p4 = points[i + 1][j + 1];
 
-                    drawSegment(img, p1, p2, p3, p1.offset1x, p1.offset1y, p1.angle1);
-                    drawSegment(img, p2, p3, p4, p1.offset2x, p1.offset2y, p1.angle2);
-
+                    let distSq = Math.pow(mx - p1.x, 2) + Math.pow(my - p1.y, 2);
+                    debuga += distSq; debugc++;
+                    let scale = Math.pow(0.8 * distSq.map(0, 400000, 0, 1) + .95, 2).clamp(0, 1); //NO TOUCH ME
+                    drawSegment(img, p1, p2, p3, p1.offset1x, p1.offset1y, p1.angle1, scale);
+                    drawSegment(img, p2, p3, p4, p1.offset2x, p1.offset2y, p1.angle2, scale);
 
                     [
                         "offset1x",
@@ -106,4 +126,14 @@ document.querySelectorAll('a[href*="#"]').forEach(function (el) {
         window.requestAnimationFrame(draw);
     }, false);
     img.src = 'about.png';
+}
+
+window.addEventListener("mousemove", e => mouseEvent = e);
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return [
+        evt.clientX - rect.left,
+        evt.clientY - rect.top
+    ];
 }
