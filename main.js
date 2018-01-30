@@ -72,7 +72,7 @@ let mouseEvent = {clientX: -9999, clientY: -9999};
                 ctx.translate(offsetx, offsety);
             }
 
-            if (angle || scale) {
+            if (angle || scale != 1) {
                 center = {
                     x: (p1.x + p2.x + p3.x) / 3,
                     y: (p1.y + p2.y + p3.y) / 3
@@ -109,6 +109,7 @@ let mouseEvent = {clientX: -9999, clientY: -9999};
                     let distSq = Math.pow(mx - p1.x, 2) + Math.pow(my - p1.y, 2);
                     debuga += distSq; debugc++;
                     let scale = Math.pow(0.8 * distSq.map(0, 400000, 0, 1) + .95, 2).clamp(0, 1); //NO TOUCH ME
+                    if(1  < epsilon) scale = 1;
                     drawSegment(img, p1, p2, p3, p1.offset1x, p1.offset1y, p1.angle1, scale);
                     drawSegment(img, p2, p3, p4, p1.offset2x, p1.offset2y, p1.angle2, scale);
 
