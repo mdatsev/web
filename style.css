@@ -23,7 +23,7 @@ body {
     width: 100%;
     background: var(--navbar-color);
     position: fixed;
-    padding: 10px;
+    padding: 2vh;
     box-sizing: border-box;
     z-index: 1;
 }
@@ -41,7 +41,7 @@ body {
 
 #nav li {
     float: left;
-    padding-left: 20px;
+    padding-left: 5vh;
 }
 
 #nav li a {
@@ -74,13 +74,21 @@ body {
     padding-bottom: 20vh;
     color: var(--main-text-color);
     box-sizing: border-box;
-    text-shadow: -2px 3px black;   
-    background-image: linear-gradient(var(--bg-color-overlay),
-                                        var(--bg-color-overlay)),  
-                        url("idea-background.jpg");
+    text-shadow: -2px 3px black;
+    background-image: linear-gradient(var(--bg-color-overlay), var(--bg-color-overlay)), url("idea-background.jpg");
     background-attachment: fixed;
-    filter:alpha(opacity=50);
+    filter: alpha(opacity=50);
     background-size: cover;
+}
+
+#gallery {
+    background-size: cover;
+    height: 100vh;
+}
+
+#games {
+    background-size: cover;
+    height: 100vh;
 }
 
 .quote {
@@ -92,25 +100,48 @@ body {
 .main-quote {
     text-align: center;
     width: 100%;
-    font-size: 50pt;
+    font-size: 8vh;
 }
 
 .left-quote {
     width: 40%;
-    font-size: 30pt;
+    font-size: 4vh;
     float: left;
 }
 
 .right-quote {
-    width: 40%;    
-    font-size: 30pt;
+    width: 40%;
+    font-size: 4vh;
     float: right;
 }
 
 .main-tosko {
     position: relative;
     transform: translateY(calc(50vh - 50%));
+    transform: translateX(calc(50vw - 50%));
     display: block;
     margin: 0;
     padding: 0;
+}
+
+#gallery-image {
+    display: block;
+    margin: auto;
+    height: 100vh;
+}
+
+#gallery-prev {
+    display: block;
+    float: left;
+    width: 15vh;
+    height: 15vh;
+    transform: translateY(50vh);
+}
+
+#gallery-next {
+    display: block;
+    float: right;
+    width: 15vh;
+    height: 15vh;
+    transform: translateY(-50vh);
 }

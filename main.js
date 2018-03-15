@@ -1,10 +1,10 @@
-Number.prototype.clamp = function(min, max) {
+Number.prototype.clamp = function (min, max) {
     return Math.min(Math.max(this, min), max);
-  };
+};
 
-  Number.prototype.map = function (in_min, in_max, out_min, out_max) {
+Number.prototype.map = function (in_min, in_max, out_min, out_max) {
     return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-  }
+}
 
 document.querySelectorAll('a[href*="#"]').forEach(function (el) {
     var targetId = el.hash,
@@ -26,7 +26,10 @@ document.querySelectorAll('a[href*="#"]').forEach(function (el) {
 let debuga = 0;
 let debugc = 0;
 
-let mouseEvent = {clientX: -9999, clientY: -9999};
+let mouseEvent = {
+    clientX: -9999,
+    clientY: -9999
+};
 
 {
     let canvas = document.getElementById("about-canvas");
@@ -82,8 +85,8 @@ let mouseEvent = {clientX: -9999, clientY: -9999};
                 ctx.scale(scale, scale);
                 ctx.translate(-center.x, -center.y)
             }
-            
-            
+
+
 
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -98,7 +101,7 @@ let mouseEvent = {clientX: -9999, clientY: -9999};
         function draw() {
             let [mx, my] = getMousePos(canvas, mouseEvent);
             let done = true;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);     
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < vCount - 1; i++) {
                 for (let j = 0; j < hCount - 1; j++) {
                     const p1 = points[i][j];
@@ -107,9 +110,10 @@ let mouseEvent = {clientX: -9999, clientY: -9999};
                     const p4 = points[i + 1][j + 1];
 
                     let distSq = Math.pow(mx - p1.x, 2) + Math.pow(my - p1.y, 2);
-                    debuga += distSq; debugc++;
+                    debuga += distSq;
+                    debugc++;
                     let scale = Math.pow(0.8 * distSq.map(0, 400000, 0, 1) + .95, 2).clamp(0, 1); //NO TOUCH ME
-                    if(1  < epsilon) scale = 1;
+                    if (1 < epsilon) scale = 1;
                     drawSegment(img, p1, p2, p3, p1.offset1x, p1.offset1y, p1.angle1, scale);
                     drawSegment(img, p2, p3, p4, p1.offset2x, p1.offset2y, p1.angle2, scale);
 
@@ -119,7 +123,8 @@ let mouseEvent = {clientX: -9999, clientY: -9999};
                         "offset2x",
                         "offset2y",
                         "angle1",
-                        "angle2"].forEach(p => p1[p] *= Math.abs(p1[p]) > epsilon ? speed : 0)
+                        "angle2"
+                    ].forEach(p => p1[p] *= Math.abs(p1[p]) > epsilon ? speed : 0)
                 }
             }
             window.requestAnimationFrame(draw);
@@ -137,4 +142,18 @@ function getMousePos(canvas, evt) {
         evt.clientX - rect.left,
         evt.clientY - rect.top
     ];
+}
+
+{
+    let img = document.getElementById("gallery-image");
+    let index = 0;
+    let total = 3;
+    document.getElementById("gallery-prev").addEventListener("click", () => {
+        index--;
+        if (index < 0) index = total;
+        img.src = `gallery-${index%total}.jpg`;
+    })
+    document.getElementById("gallery-next").addEventListener("click", () => {
+        img.src = `gallery-${++index%total}.jpg`;
+    })
 }
