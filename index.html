@@ -24,12 +24,18 @@
                     <li>
                         <a href="#games">Games</a>
                     </li>
+                    <li>
+                        <a href="shop.html">Shop</a>
+                    </li>
+                    <li>
+                        <a href="conact.html">Contact</a>
+                    </li>
                 </ul>
             </nav>
     </header>
 
     <!-- ABOUT -->
-    <div id="about" >
+    <div id="about" class="section">
         <div class="content">
             <canvas id="about-canvas" class="main-tosko"></canvas>
         </div>
@@ -53,17 +59,42 @@
         <div class="content">
             <img id="gallery-prev" src="left-arrow.jpg">
             <img id="gallery-image" src="gallery-0.jpg">
+            <iframe gallery-index="1" id="gallery-video" width="560" height="315" src="https://www.youtube.com/embed/oV4q3RCnP0s" frameborder="0" allow="autoplay; encrypted-media" style="opacity:0" allowfullscreen=""></iframe>
             <img id="gallery-next" src="right-arrow.jpg">
         </div>
     </div>
     <!-- Games -->
-    <div id="games">
+    <div id="games" class="section">
         <div class="content">
-            <canvas id="game-0-canvas" width="600px" height="600px"></canvas>
+            <div class="wrapper" id="wrapper">
+                <img class="gamethumb" game="0" src="game.png">
+                <img class="gamethumb" game="1" src="game.png">
+                <img class="gamethumb" game="2" src="game.png">
+                <img class="gamethumb" game="3" src="game.png">
+                <!-- <img class="gamethumb" game="4" src="game.png"> -->
+                <!-- <img class="gamethumb" game="5" src="game.png"> -->
+            </div>
+        </div>
+        <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <canvas id="game-0-canvas" hidden width="600px" height="600px"></canvas>
+            <canvas id="game-1-canvas" hidden width="600px" height="600px"></canvas>
+            <canvas id="game-2-canvas" hidden width="600px" height="600px"></canvas>
+            <canvas id="game-3-canvas" hidden width="600px" height="600px"></canvas>
         </div>
     </div>
+    <script src="header.js"></script>
+    <script src="about.js"></script>
+    <script src="quotes.js"></script>
+    <script src="gallery.js"></script>
+    <script src="games.js"></script>
     <script src="game-0.js"></script>
-    <script src="main.js"></script>
+    <script src="game-1.js"></script>
+    <script src="game-2.js"></script>
+    <script src="game-3.js"></script>
+    
 </body>
 
 </html>

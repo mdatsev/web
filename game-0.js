@@ -1,4 +1,4 @@
-class Vector {
+function game0(){class Vector {
     constructor(x = 0, y = 0) {
         this.x = x;
         this.y = y;
@@ -235,7 +235,7 @@ function gameOver() {
     balls = [];
     if (score > highScore)
         highScore = score;
-    console.log("u ded");
+    //console.log("u ded");
     setup();
 }
 
@@ -246,7 +246,7 @@ function checkMouse() {
     }
 
     if (balls.some(b => mouseOnBall(b))) {
-        console.log(lives);
+        //console.log(lives);
         if (--lives == 0)
             gameOver();
         setInvincible();
@@ -353,4 +353,4 @@ function getMousePos(canvas, evt) {
         evt.clientX - rect.left,
         evt.clientY - rect.top
     ];
-}
+}}

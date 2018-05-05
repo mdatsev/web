@@ -1,0 +1,100 @@
+body {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 20vw);
+    grid-gap: 5vw;
+    background-color: #fea;
+    color: #444;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    padding-top: 14vh;
+    width: 70vw;
+}
+
+.box{
+    padding: 3vw;
+    box-sizing: border-box;
+    background-origin: content-box;
+    height: 20vw;
+    width: 20vw;
+    position: relative;
+}
+
+.img {
+    max-width: 100%;
+    max-height: 20vw;
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 8vw;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+
+.open {
+    display: block;
+    width:100%;
+    position: absolute;
+    right:    0;
+    bottom:   0;
+}
+
+.title {
+    position: absolute;
+    right:    0;
+    bottom:   0;
+    margin-right: 1vw;
+    font-size: 1.5vw;
+    padding: .2vw;
+}
+
+.price {
+    position: absolute;
+    left:    0;
+    bottom:   0;
+    margin-left: 1vw;
+    padding: .2vw;
+}
+
+#item-image {
+    max-width: 60%;
+    max-height: 60vh;
+    float: left;
+    margin: 2vw;
+}
+
+#item-description { 
+    padding: 2vw;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    overflow:hidden;
+    width: 100%;
+    background-color: #fefefe;
+    margin: 5vh auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-height: 90vh;
+    z-index: 4;
+}

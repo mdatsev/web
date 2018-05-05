@@ -13,17 +13,14 @@
 
 html,
 body {
-    width: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden;
 }
 
 #header {
     width: 100%;
     background: var(--navbar-color);
     position: fixed;
-    padding: 2vh;
     box-sizing: border-box;
     z-index: 1;
 }
@@ -117,17 +114,32 @@ body {
 
 .main-tosko {
     position: relative;
-    transform: translateY(calc(50vh - 50%));
-    transform: translateX(calc(50vw - 50%));
     display: block;
     margin: 0;
     padding: 0;
 }
 
+#gallery {
+    height: 100vh;
+    position: relative;
+}
+
 #gallery-image {
     display: block;
     margin: auto;
-    height: 100vh;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+#gallery-video {
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
 }
 
 #gallery-prev {
@@ -135,7 +147,10 @@ body {
     float: left;
     width: 15vh;
     height: 15vh;
-    transform: translateY(50vh);
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    padding-left: 4vh;
 }
 
 #gallery-next {
@@ -143,5 +158,66 @@ body {
     float: right;
     width: 15vh;
     height: 15vh;
-    transform: translateY(-50vh);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateX(-100%);
+    padding-right: 4vh;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 20vw);
+    grid-gap: 5vw;
+    color: #444;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    padding-top: 8vh;
+    width: 70vw;
+}
+
+.gamethumb{
+    padding: 3vw;
+    box-sizing: border-box;
+    background-origin: content-box;
+    height: 20vw;
+    width: 20vw;
+    position: relative;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-content {
+    overflow:hidden;
+    width: 600px;
+    height: 600px;
+    margin: auto auto;
+    padding: 20px;
+    z-index: 3;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
