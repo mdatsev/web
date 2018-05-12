@@ -2,7 +2,7 @@
     Number.prototype.clamp = function (min, max) {
         return Math.min(Math.max(this, min), max);
     }
-    
+
     Number.prototype.map = function (in_min, in_max, out_min, out_max) {
         return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
@@ -11,16 +11,16 @@
         clientX: -9999,
         clientY: -9999
     };
-    
+
     window.addEventListener("mousemove", e => mouseEvent = e);
-    
+
     function getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect();
         return [
             evt.clientX - rect.left,
             evt.clientY - rect.top
         ];
-    }    
+    }
 
     let canvas = document.getElementById("about-canvas");
     let ctx = canvas.getContext("2d");
@@ -36,11 +36,20 @@
     let angleSpread = 0;
     let epsilon = 0.001;
     let points = [];
-    let eq = {a: 0.8, b: 0, c:400000, d:0, e:1, f:.95, g:2, h:0, i:1}
+    let eq = {
+        a: 0.8,
+        b: 0,
+        c: 400000,
+        d: 0,
+        e: 1,
+        f: .95,
+        g: 2,
+        h: 0,
+        i: 1
+    }
     const signedRnd = _ => 0.5 - Math.random();
 
-    function randomize()
-    {
+    function randomize() {
         hCount = 2 + Math.floor(Math.random() * 20)
         vCount = 2 + Math.floor(Math.random() * 20)
         xspread = Math.random() * 10000
@@ -60,22 +69,21 @@
         }*/
     }
 
-    function generate(sizex = 1, sizey = 1)
-    {
+    function generate(sizex = 1, sizey = 1) {
         for (let i = 0; i < vCount; i++) {
             points[i] = [];
             for (let j = 0; j < hCount; j++) {
                 points[i][j] = {
-                    x: sizex / hCount * (j + (j == 0 
-                        ? 0 
-                        : j == hCount - 1
-                            ? 1
-                            : Math.random())),
-                    y: sizey / vCount * (i + (i == 0 
-                        ? 0 
-                        : i == vCount - 1
-                            ? 1
-                            : Math.random())),
+                    x: sizex / hCount * (j + (j == 0 ?
+                        0 :
+                        j == hCount - 1 ?
+                        1 :
+                        Math.random())),
+                    y: sizey / vCount * (i + (i == 0 ?
+                        0 :
+                        i == vCount - 1 ?
+                        1 :
+                        Math.random())),
                     offset1x: signedRnd() * xspread,
                     offset1y: signedRnd() * yspread,
                     offset2x: signedRnd() * xspread,
@@ -87,7 +95,7 @@
         }
     }
 
-    function execute(){
+    function execute() {
         canvas.addEventListener("click", () => (randomize(), generate(img.width, img.height)));
         generate();
         for (let i = 0; i < vCount; i++) {
@@ -100,15 +108,15 @@
         const centery = canvas.height / 2 - img.height / 2;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.translate(centerx, centery)
-        
-        
-        
+
+
+
         function drawSegment(image, p1, p2, p3, offsetx, offsety, angle, scale, center) {
             ctx.save();
             if (offsetx || offsety) {
                 ctx.translate(offsetx, offsety);
             }
-            
+
             if (angle || scale != 1) {
 
                 ctx.translate(center.x, center.y)
@@ -116,7 +124,7 @@
                 ctx.scale(scale, scale);
                 ctx.translate(-center.x, -center.y)
             }
-            
+
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -126,9 +134,8 @@
             ctx.restore();
 
         }
-        
-        function integrate(p1)
-        {
+
+        function integrate(p1) {
             [
                 "offset1x",
                 "offset1y",
@@ -161,7 +168,7 @@
                     let distSq2 = Math.pow(mx - centerx - center2.x, 2) + Math.pow(my - centery - center2.y, 2);
                     //debuga += distSq;
                     //debugc++;
-                    
+
                     let scale1 = Math.pow(eq.a * distSq1.map(eq.b, eq.c, eq.d, eq.e) + eq.f, eq.g).clamp(eq.h, eq.i); //NO TOUCH ME
                     let scale2 = Math.pow(eq.a * distSq2.map(eq.b, eq.c, eq.d, eq.e) + eq.f, eq.g).clamp(eq.h, eq.i); //NO TOUCH ME
                     if (1 < epsilon) scale = 1;

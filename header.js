@@ -1,7 +1,8 @@
-document.querySelectorAll("#nav li a")
-.forEach(e => e.classList.remove("active"));
-let cur = document.querySelector(`a[href="${window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}"]`)
-cur || cur.classList.add('active');
+let idx = window.location.href.lastIndexOf('#');
+let active = idx == -1 ? '#about' : window.location.href.substring(idx)
+let cur = document.querySelector(`a[href="${active}"]`)
+if (cur)
+    cur.classList.add('active');
 
 document.querySelectorAll('a[href*="#"]').forEach(function (el) {
     var targetId = el.hash,
