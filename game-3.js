@@ -1,6 +1,6 @@
 function game3() {
     texture = new Image();
-    texture.src = 'https://i.imgur.com/uIPlAEE.png'
+    texture.src = 'ball.png'
 
     canvas = document.querySelector('#game-3-canvas')
     canvas.width = 1000

@@ -94,7 +94,7 @@ function game2() {
 		//for(var i = 0; i < t.ballsCount; i++) {
 		//	setTimeout(function(){balls.push(new Ball(t.x, t.y, random(1, 5) + 0.5, random(-5, 5) + 0.5, 0.9, 50, 1, "https://i.imgur.com/uIPlAEE.png", false))}, t.spawnInterval * (i + 1));
 		//}	
-		balls.push(new Ball(t.x + t.width / 2, t.y + t.height / 2, random(-5, 5) + 0.5, random(1, 5) + 0.5, 0.9, 50, 10, "https://i.imgur.com/uIPlAEE.png", false));
+		balls.push(new Ball(t.x + t.width / 2, t.y + t.height / 2, random(-5, 5) + 0.5, random(1, 5) + 0.5, 0.9, 50, 10, 'ball.png', false));
 	}
 
 

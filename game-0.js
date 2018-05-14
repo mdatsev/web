@@ -55,7 +55,7 @@ function game0() {
                 textureURL
             } = options;
             this.texture = new Image();
-            this.texture.src = 'https://i.imgur.com/uIPlAEE.png';
+            this.texture.src = 'ball.png';
             this.pos = new Vector(x, y);
             this.vel = new Vector(vx, vy);
             this.r = r;

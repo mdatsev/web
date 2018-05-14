@@ -1,7 +1,7 @@
 function game4() {
 
     texture = new Image();
-    texture.src = 'https://i.imgur.com/uIPlAEE.png'
+    texture.src = 'ball.png'
 
     var canvas = document.getElementById('game-4-canvas');
     var ctx = canvas.getContext('2d');

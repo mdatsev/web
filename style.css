@@ -187,8 +187,8 @@ body {
 .gamethumb {
     box-sizing: border-box;
     background-origin: content-box;
-    height: 20vw;
-    width: 20vw;
+    height: 18vw;
+    width: 18vw;
     position: relative;
     border: 5px solid var(--navbar-color);
 }

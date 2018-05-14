@@ -60,7 +60,7 @@ function game1() {
             ctx.drawImage(this.texture, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
         }
     };
-    ball.texture.src = 'https://i.imgur.com/uIPlAEE.png'
+    ball.texture.src = 'ball.png'
     balls.push(ball);
 
     canvas.addEventListener('click', function (evt) {
